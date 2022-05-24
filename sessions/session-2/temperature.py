@@ -1,5 +1,5 @@
-from temperature_scale import TemperatureScale
 from __future__ import annotations
+from temperature_scale import TemperatureScale
 
 class Temperature():
     """
@@ -25,7 +25,7 @@ class Temperature():
         
         primary_scale = self.Scale
         other = other.ConvertToTarget(primary_scale)
-        result = round(self.Value, other.Value, 2)
+        result = round(self.Value + other.Value, 2)
         return Temperature(result, primary_scale)
 
     def Substract(self, other: Temperature) -> Temperature:

@@ -15,6 +15,6 @@ Parte de esta tarea involucra realizar **al menos** tres ensayos o sesiones, con
 
 | Sesiones | Estado | Fecha de sesion |
 | -------- | ------ | --------------- |
-| Sesion 1 | Finalizado | 22 de mayo del 2022 (22/05/2022) |
-| Sesion 2 | No iniciado | TBD (TBD) |
+| Sesion 1 | Finalizada | 22 de mayo del 2022 (22/05/2022) |
+| Sesion 2 | Finalizada | 24 de mayo del 2022 (24/05/2022) |
 | Sesion 3 | No iniciado | TBD (TBD) |
