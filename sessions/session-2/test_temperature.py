@@ -1,3 +1,6 @@
+from temperature import Temperature
+from temperature_scale import TemperatureScale
+
 def test_convert_from_farenheit_to_celcius():
     """
         Test case 01: Convert a temperature from farenheit to celcius.
