@@ -1,9 +1,10 @@
 from temperature import Temperature
 from temperature_scales import TemperatureScale
+import pytest
 
 def test_case_conversion_1():
     """
-        Represents the test case 01: 
+        Represents the test case #01: 
         It converts a temperature to a given scale (Celcius to Farenheit).
     """
 
@@ -15,7 +16,7 @@ def test_case_conversion_1():
 
 def test_case_sum_temps_equal_scales():
     """
-        Represents the test case 02:
+        Represents the test case #02:
         Sums two temperatures with equal scales (Celcius and Celcius).
     """
 
@@ -28,7 +29,7 @@ def test_case_sum_temps_equal_scales():
 
 def test_case_sub_temps_equal_scales():
     """
-        Represents tbe test case 03:
+        Represents tbe test case #03:
         Substracts two temperatures with equal scales (Kelvin and Kelvin).
     """
 
@@ -42,7 +43,7 @@ def test_case_sub_temps_equal_scales():
 
 def test_case_mutliply_temps_equal_scales():
     """
-        Represents the test case 04:
+        Represents the test case #04:
         Multiplies two temperatures with equal scales (Farenheit and Farenheit).
     """
 
@@ -55,7 +56,7 @@ def test_case_mutliply_temps_equal_scales():
 
 def test_case_divide_temps_equal_scales():
     """
-        Represents the test case 05:
+        Represents the test case #05:
         Divides two temperatures with equal scales (Celcius and Celcius).
     """
 
@@ -68,7 +69,7 @@ def test_case_divide_temps_equal_scales():
 
 def test_case_sum_temps_different_scales():
     """
-        Represents the test case 06:
+        Represents the test case #06:
         Sums two temperatures with different scales (Celcius and Kelvin).
     """
 
@@ -87,14 +88,14 @@ def test_case_sub_temps_different_scales():
 
     temp1 = Temperature(7, TemperatureScale.Farenheit)
     temp2 = Temperature(10, TemperatureScale.Kelvin)
-    expected = (-253.93, "Farenheit")
+    expected = (448.67, "Farenheit")
     result = temp1.Substract(temp2)
     actual = (result.Value, result.Scale.name)
     assert actual == expected, "Substraction is invalid."
 
 def test_case_multiply_temps_different_scales():
     """
-        Represents the test case 08:
+        Represents the test case #08:
         Multiplies two temperatures with different scales (Farenheit and Celcius).
     """
 
@@ -107,20 +108,20 @@ def test_case_multiply_temps_different_scales():
 
 def test_case_divide_temps_different_scales():
     """
-        Represents the test case 09:
+        Represents the test case #09:
         Divides two temperatures with different scales (Kelvin and Celcius).
     """
 
     temp1 = Temperature(100, TemperatureScale.Kelvin)
     temp2 = Temperature(-200, TemperatureScale.Celcius)
-    expected = (1.36, "Kelvin")
+    expected = (1.37, "Kelvin")
     result = temp1.DivideBy(temp2)
     actual = (result.Value, result.Scale.name)
     assert actual == expected, "Division is invalid."
 
 def test_case_conversion_2():
     """
-        Represents the test case 10: 
+        Represents the test case #10: 
         It converts a temperature to a given scale (Farenheit to Celcius).
     """
 
@@ -133,20 +134,20 @@ def test_case_conversion_2():
 
 def test_case_conversion_3():
     """
-        Represents the test case 11:
+        Represents the test case #11:
         It converts a temperature to a given scale (Celcius to Kelvin).
     """
 
 
     temp = Temperature(8, TemperatureScale.Celcius)
     new_temp = temp.ConvertToScale(TemperatureScale.Kelvin)
-    expected = (373.15, "Kelvin")
+    expected = (281.15, "Kelvin")
     actual = (new_temp.Value, new_temp.Scale.name)
     assert actual == expected, "Conversion is invalid."
 
 def test_case_conversion_4():
     """
-        Represents the test case 12: 
+        Represents the test case #12: 
         It converts a temperature to a given scale (Kelvin to Celcius).
     """
 
@@ -158,7 +159,7 @@ def test_case_conversion_4():
 
 def test_case_conversion_5():
     """
-        Represents the test case 13: 
+        Represents the test case #13: 
         It converts a temperature to a given scale (Kelvin to Farenheit).
     """
 
@@ -170,12 +171,47 @@ def test_case_conversion_5():
 
 def test_case_conversion_6():
     """
-        Represents the test case 14: 
+        Represents the test case #14: 
         It converts a temperature to a given scale (Farenheit to Kelvin).
     """
 
-    temp = Temperature(8, TemperatureScale.Farenheit)
+    temp = Temperature(73, TemperatureScale.Farenheit)
     new_temp = temp.ConvertToScale(TemperatureScale.Kelvin)
-    expected = (310.93, "Kelvin")
+    expected = (295.93, "Kelvin")
     actual = (new_temp.Value, new_temp.Scale.name)
     assert actual == expected, "Conversion is invalid."
+
+def test_case_conmmutative_property_add():
+    """
+        Represents the test case #15:
+        Validates the conmmutative property of addition of temperatures.
+    """
+
+    temp1 = Temperature(7, TemperatureScale.Celcius)
+    temp2 = Temperature(10, TemperatureScale.Celcius)
+    expected = (7 + 10 == 10 + 7) # Celcius
+    actual = (temp1.Add(temp2).Value == temp2.Add(temp1).Value)
+    assert actual == expected, "Conmmutative property is not true."
+
+def test_case_conmmutative_property_multiplication():
+    """
+        Represents the test case #16:
+        Validates the conmmutative property of multiplication of temperatures.
+    """
+
+    temp1 = Temperature(4, TemperatureScale.Celcius)
+    temp2 = Temperature(5, TemperatureScale.Celcius)
+    expected = (4 * 5 == 5 * 4) # Celcius
+    actual = (temp1.MultiplyBy(temp2).Value == temp2.MultiplyBy(temp1).Value)
+    assert actual == expected, "Conmmutative property is not true."
+
+def test_case_conversion_failure_exception():
+    """
+        Represents the test case #17:
+        Verifies whether the conversion function returns exception when invalid value is inserted.
+    """
+
+    temp = Temperature(10, TemperatureScale.Celcius)
+    with pytest.raises(Exception) as ex:
+        new_temp = temp.ConvertToScale(None)
+        pass
